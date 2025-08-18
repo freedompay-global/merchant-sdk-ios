@@ -1,9 +1,10 @@
-## Payment SDK (iOS, Swift)
+# iOS Merchant SDK (iOS, Swift)
 
-&emsp;The Payment SDK is a library that simplifies interaction with the Freedom Pay API. Supports iOS 15 and above.
+&emsp;The Merchant SDK is a library that simplifies interaction with the Freedom Pay API. Supports iOS 15 and above.
 
 ---
 ### Table of Contents
+:::note[]
 - [Installation Instructions](#installation-instructions)
   - [SDK integration](#sdk-integration)
     - [Initialize](#initialize)
@@ -41,35 +42,42 @@
 ### Getting Started
 
 &emsp;Before you begin integrating the **Freedom Payment SDK** into your iOS app, ensure you have the following:
-- An iOS app project with a minimum deployment of 15.
-- The **Freedom Payment SDK** xcframework file
+- An iOS app project with a minimum deployment target of iOS 15.0
+- Xcode 12.0 or later
 
 ---
 
 ## Installation Instructions
 
-#### Add the SDK to your Podfile
+### Swift Package Manager
 
-```ruby
-platform :ios, '15.0'
-use_frameworks! :linkage => :static
+#### Option 1: Add via Xcode
 
-target 'YourAppTarget' do
-  pod 'FreedomPaymentSdk',
-      git: 'https://github.com/freedompay-global/merchant-sdk-ios.git',
-      tag: '1.0.0'                       # use the latest released tag
-end
+1. Open your project in Xcode
+2. Go to **File → Add Package Dependencies...**
+3. Enter the repository URL: `https://github.com/freedompay-global/merchant-sdk-ios.git`
+4. Select the version or branch you want to use
+5. Click **Add Package**
+
+#### Option 2: Add via Package.swift
+Add the following dependency to your `Package.swift` file:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/freedompay-global/merchant-sdk-ios.git", from: "1.0.0")
+]
 ```
 
-#### Install the pod and open the workspace
-```bash
-pod install
-open YourApp.xcworkspace
-```
+Then add it to your target:
 
-#### Disable Xcode’s user-script sandboxing (Xcode 15 +)
-Target → Build Settings → Build Options →
-ENABLE_USER_SCRIPT_SANDBOXING = NO
+```swift
+targets: [
+    .target(
+        name: "YourTarget",
+        dependencies: ["FreedomPaymentSdk"]
+    )
+]
+```
 
 #### Import and use the SDK
 
@@ -197,7 +205,7 @@ freedomApi.setConfiguration(sdkConfiguration)
 - **error**: Specifies the type of error that occurred.
 
 ```swift
-freedomApi.getPaymentStatus(paymentId: Int64(123456)) { (result: FreedomResult<Status>) in
+freedomApi.getPaymentStatus(Int64(123456)) { (result: FreedomResult<Status>) in
     switch result {
     case .success(let status):
         // Payment status retrieved successfully.
@@ -210,9 +218,9 @@ freedomApi.getPaymentStatus(paymentId: Int64(123456)) { (result: FreedomResult<S
 ```
 
 #### Make Clearing Payment
-> **NOTE**
-> This method is specifically designed for merchants who have **auto-clearing disabled** in their SDK configuration. Auto-clearing can be managed via the `autoClearing` property within the [`OperationalConfiguration`](#table-operationalconfiguration) of your `SdkConfiguration`.
-
+:::info[]
+This method is specifically designed for merchants who have **auto-clearing disabled** in their SDK configuration. Auto-clearing can be managed via the `autoClearing` property within the [`OperationalConfiguration`](#table-operationalconfiguration) of your `SdkConfiguration`.
+:::
 
 &emsp;Use the `makeClearingPayment` method to explicitly initiate the clearing (final capture) of funds for a previously authorized payment. This method gives you the flexibility to clear an amount that may be different from the original amount specified when the payment was created (e.g., for partial captures).
 
@@ -221,7 +229,7 @@ freedomApi.getPaymentStatus(paymentId: Int64(123456)) { (result: FreedomResult<S
 | Parameter   | Type                                      | Description                                                                                                                                | Constraints/Notes                                                                                                      |
 |-------------|-------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | `paymentId` | `Int64`                                    | Unique identifier of the payment you want to clear.                                                                                        |                                                                                                                        |
-| `amount`    | `Float?`                                  | Amount to be cleared. If `nil`, the full amount of the original authorized payment will be cleared.                                       | Optional. Defaults to nil. Must be between `0.01` and `99999999.00` if provided. Cannot exceed the authorized amount. |
+| `amount`    | `Decimal?`                                  | Amount to be cleared. If `nil`, the full amount of the original authorized payment will be cleared.                                       | Optional. Defaults to nil. Must be between `0.01` and `99999999.00` if provided. Cannot exceed the authorized amount. |
 | `onResult`  | `@escaping (FreedomResult<ClearingStatus>) -> Void` | Callback function that will be invoked with the result of the clearing operation. See [`ClearingStatus`](#clearingstatus-structure) model. |                                                                                                                        |
 
 &emsp;The process returns an [`FreedomResult<ClearingStatus>`](#error-handling-and-results) object, which can be either:
@@ -242,9 +250,9 @@ freedomApi.makeClearingPayment(Int64(123456)) { (result: FreedomResult<ClearingS
 ```
 
 #### Make Cancel Payment
-> **NOTE**
-> This method is specifically designed for merchants who have **auto-clearing disabled** in their SDK configuration. Auto-clearing can be managed via the `autoClearing` property within the [`OperationalConfiguration`](#table-operationalconfiguration) of your `SdkConfiguration`.
-
+:::info[]
+This method is specifically designed for merchants who have **auto-clearing disabled** in their SDK configuration. Auto-clearing can be managed via the `autoClearing` property within the [`OperationalConfiguration`](#table-operationalconfiguration) of your `SdkConfiguration`.
+:::
 
 &emsp;Use the `makeCancelPayment` method to reverse an authorized payment, effectively unblocking the amount on the customer's card. This ensures that the funds will not be charged.
 
@@ -280,7 +288,7 @@ freedomApi.makeCancelPayment(Int64(123456)) { (result: FreedomResult<PaymentResp
 | Parameter   | Type                                       | Description                                                                                                                              | Constraints/Notes                                                                                                      |
 |-------------|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | `paymentId` | `Int64`                                     | Unique identifier of the payment you want to revoke (refund).                                                                            |                                                                                                                        |
-| `amount`    | `Float?`                                   | Amount of funds to return. If `nil`, the full amount of the original debited payment will be refunded.                                  | Optional. Defaults to nil. Must be between `0.01` and `99999999.00` if provided. Cannot exceed the authorized amount. |
+| `amount`    | `Decimal?`                                   | Amount of funds to return. If `nil`, the full amount of the original debited payment will be refunded.                                  | Optional. Defaults to nil. Must be between `0.01` and `99999999.00` if provided. Cannot exceed the authorized amount. |
 | `onResult`  | `@escaping (FreedomResult<PaymentResponse>) -> Void` | Callback function that will be invoked with the result of the refund process. See [`PaymentResponse`](#paymentresponse-structure) model. |                                                                                                                        |
 
 &emsp;The process returns an [`FreedomResult<PaymentResponse>`](#error-handling-and-results) object, which can be either:
@@ -437,13 +445,13 @@ enum ValidationErrorType: String, Codable {
 | `paymentId`       | `Int64`                  | Unique identifier for this payment.                                     |
 | `orderId`         | `String?`               | Order ID provided during payment creation.                              |
 | `currency`        | `String`                | Currency code of the payment.                                           |
-| `amount`          | `Float`                 | Original amount of the payment.                                         |
+| `amount`          | `Decimal`                 | Original amount of the payment.                                         |
 | `canReject`       | `Bool?`              | Indicates if the payment can still be cancelled.                        |
 | `paymentMethod`   | `String?`               | Method used for payment.                                                |
 | `paymentStatus`   | `String?`               | Current status of the payment.                                          |
-| `clearingAmount`  | `Float?`                | Total amount that has been cleared (captured) for this payment.         |
-| `revokedAmount`   | `Float?`                | Total amount that has been cancelled for this payment.                  |
-| `refundAmount`    | `Float?`                | Total amount that has been refunded.                                    |
+| `clearingAmount`  | `Decimal?`                | Total amount that has been cleared (captured) for this payment.         |
+| `revokedAmount`   | `Decimal?`                | Total amount that has been cancelled for this payment.                  |
+| `refundAmount`    | `Decimal?`                | Total amount that has been refunded.                                    |
 | `cardName`        | `String?`               | Name on the card used for the payment.                                  |
 | `cardPan`         | `String?`               | Masked Primary Account Number (PAN) of the card.                        |
 | `revokedPayments` | `[RevokedPayment]?` | List of individual cancelled transactions associated with this payment. |
@@ -468,7 +476,7 @@ enum ValidationErrorType: String, Codable {
 |-----------------|-----------|---------------------------------------------------|
 | `paymentId`     | `Int64?`   | ID of the refund payment.                         |
 | `paymentStatus` | `String?` | Status of the refund payment.                     |
-| `amount`        | `Float?`  | Amount that was refunded in this transaction.     |
+| `amount`        | `Decimal?`  | Amount that was refunded in this transaction.     |
 | `paymentDate`    | `String?` | Date and time of the refund.                      |
 | `reference`     | `Int64?`   | System-generated reference number for the refund. |
 
@@ -538,4 +546,3 @@ enum Currency: String {
 ### Support
 If you have questions or need help, feel free to reach out! 👋
 **Email**: support@freedompay.kz
-
