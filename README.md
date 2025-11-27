@@ -747,7 +747,7 @@ func paymentAuthorizationController(
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/freedompay-global/merchant-sdk-android/refs/heads/main/documentation-assets/FreedomResult(Dark).png"">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/freedompay-global/merchant-sdk-android/refs/heads/main/documentation-assets/FreedomResult(Light).png"">
-  <img alt="Mind Map of Freedom Result" src="https://raw.githubusercontent.com/freedompay-global/merchant-sdk-android/refs/heads/main/documentation-assets/FreedomResult(Light).png" width="50%">
+  <img alt="Mind Map of Freedom Result" src="https://raw.githubusercontent.com/freedompay-global/merchant-sdk-android/refs/heads/main/documentation-assets/FreedomResult(Light).png" width="100%">
 </picture>
 
 
