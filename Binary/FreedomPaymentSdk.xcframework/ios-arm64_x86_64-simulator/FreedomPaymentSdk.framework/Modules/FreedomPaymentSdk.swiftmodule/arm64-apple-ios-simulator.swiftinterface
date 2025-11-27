@@ -1,0 +1,289 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name FreedomPaymentSdk
+// swift-module-flags-ignorable:  -interface-compiler-version 6.1.2
+import CryptoKit
+import Foundation
+import Swift
+import UIKit
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum HttpMethod : Swift.String {
+  case GET
+  case POST
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct OperationalConfiguration {
+  public static let lifeTimeSeconds: Swift.Int
+  public let testingMode: Swift.Bool
+  public let language: FreedomPaymentSdk.Language
+  public let autoClearing: Swift.Bool?
+  public let checkUrl: Swift.String?
+  public let resultUrl: Swift.String?
+  public let requestMethod: FreedomPaymentSdk.HttpMethod?
+  public init(testingMode: Swift.Bool = true, language: FreedomPaymentSdk.Language = .RU, lifetime: Swift.Int = OperationalConfiguration.lifeTimeSeconds, autoClearing: Swift.Bool? = nil, checkUrl: Swift.String? = nil, resultUrl: Swift.String? = nil)
+  public init(testingMode: Swift.Bool = true, language: FreedomPaymentSdk.Language = .RU, lifetime: Swift.Int = OperationalConfiguration.lifeTimeSeconds, autoClearing: Swift.Bool? = nil, checkUrl: Swift.String? = nil, resultUrl: Swift.String? = nil, requestMethod: FreedomPaymentSdk.HttpMethod)
+}
+public struct PaymentResponse {
+  public let status: FreedomPaymentSdk.PaymentResponse.Status
+  public let paymentId: Swift.Int64
+  public let merchantId: Swift.String
+  public let orderId: Swift.String?
+  public enum Status {
+    case new
+    case waiting
+    case processing
+    case incomplete
+    case success
+    case error(code: Swift.String, description: Swift.String)
+    case unknown(Swift.String)
+  }
+}
+public enum Currency : Swift.String, Swift.Encodable {
+  case KZT, RUB, USD, UZS, KGS, EUR, HKD, GBP, AED, CNY, KRW, INR, THB, UAH, AMD, BYN, PLN, CZK, AZN, GEL, TJS, CAD, MDL, TRY
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum ConfirmPaymentStatus {
+  case success
+  case failure
+  public static func == (a: FreedomPaymentSdk.ConfirmPaymentStatus, b: FreedomPaymentSdk.ConfirmPaymentStatus) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct Card {
+  public let status: Swift.String?
+  public let merchantId: Swift.String?
+  public let cardToken: Swift.String?
+  public let cardHash: Swift.String?
+  public let createdAt: Swift.String?
+  public let recurringProfileId: Swift.String?
+}
+public enum FreedomResult<T> {
+  case success(T)
+  case error(FreedomPaymentSdk.FreedomError)
+}
+public enum FreedomError : Swift.Error {
+  case validationError([FreedomPaymentSdk.ValidationErrorType])
+  case paymentInitializationFailed
+  case transaction(errorCode: Swift.Int, errorDescription: Swift.String?)
+  case networkError(FreedomPaymentSdk.NetworkError)
+  case infrastructureError(FreedomPaymentSdk.InfrastructureError)
+}
+public enum NetworkError {
+  case `protocol`(code: Swift.Int, body: Swift.String?)
+  case connectivity(FreedomPaymentSdk.Connectivity)
+  case unknown
+}
+public enum Connectivity {
+  case connectionFailed
+  case connectionTimeout
+  case integrity
+  public static func == (a: FreedomPaymentSdk.Connectivity, b: FreedomPaymentSdk.Connectivity) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum InfrastructureError {
+  case sdkNotConfigured
+  case sdkCleared
+  case parsingError
+  case webView(FreedomPaymentSdk.WebView)
+}
+public enum WebView {
+  case paymentViewIsNotInitialized
+  case failed
+  public static func == (a: FreedomPaymentSdk.WebView, b: FreedomPaymentSdk.WebView) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ValidationErrorType : Swift.String, Swift.Codable {
+  case invalidMerchantID
+  case invalidSecretKey
+  case invalidPaymentAmount
+  case invalidOrderID
+  case invalidUserID
+  case invalidCardToken
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct UserConfiguration {
+  public let userPhone: Swift.String?
+  public let userContactEmail: Swift.String?
+  public let userEmail: Swift.String?
+  public init(userPhone: Swift.String? = nil, userContactEmail: Swift.String? = nil, userEmail: Swift.String? = nil)
+}
+public struct Status : Swift.Decodable {
+  public let status: Swift.String
+  public let paymentId: Swift.Int64
+  public let orderId: Swift.String?
+  public let currency: Swift.String
+  public let amount: Foundation.Decimal
+  public let canReject: Swift.Bool?
+  public let paymentMethod: Swift.String?
+  public let paymentStatus: Swift.String?
+  public let clearingAmount: Foundation.Decimal?
+  public let revokedAmount: Foundation.Decimal?
+  public let refundAmount: Foundation.Decimal?
+  public let cardName: Swift.String?
+  public let cardPan: Swift.String?
+  public let revokedPayments: [FreedomPaymentSdk.RevokedPayment]?
+  public let refundPayments: [FreedomPaymentSdk.RefundPayment]?
+  public let reference: Swift.Int64?
+  public let captured: Swift.Bool?
+  public let createDate: Swift.String
+  public let authCode: Swift.Int?
+  public let failureCode: Swift.String?
+  public let failureDescription: Swift.String?
+  public let lastTransactionInfo: FreedomPaymentSdk.LastTransactionInfo?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct RevokedPayment : Swift.Decodable {
+  public let paymentId: Swift.Int64?
+  public let paymentStatus: Swift.String?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct RefundPayment : Swift.Decodable {
+  public let paymentId: Swift.Int64?
+  public let paymentStatus: Swift.String?
+  public let amount: Foundation.Decimal?
+  public let paymentDate: Swift.String?
+  public let reference: Swift.Int64?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct LastTransactionInfo : Swift.Decodable {
+  public let status: Swift.String
+  public let failureCode: Swift.String?
+  public let failureDescription: Swift.String?
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers final public class FreedomAPI {
+  public static func create(merchantId: Swift.String, secretKey: Swift.String, region: FreedomPaymentSdk.Region) -> FreedomPaymentSdk.FreedomAPI
+  final public func createPaymentPage(paymentRequest: FreedomPaymentSdk.StandardPaymentRequest, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
+  final public func createPaymentFrame(paymentRequest: FreedomPaymentSdk.StandardPaymentRequest, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
+  final public func addNewCard(userId: Swift.String, orderId: Swift.String? = nil, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
+  final public func getPaymentStatus(_ paymentId: Swift.Int64, includeLastTransactionInfo: Swift.Bool? = nil, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.Status>) -> Swift.Void)
+  final public func getAddedCards(_ userId: Swift.String, onResult: @escaping (FreedomPaymentSdk.FreedomResult<[FreedomPaymentSdk.Card]>) -> Swift.Void)
+  final public func removeCard(_ userId: Swift.String, cardToken: Swift.String, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.RemovedCard>) -> Swift.Void)
+  final public func createCardPayment(_ request: FreedomPaymentSdk.TokenizedPaymentRequest, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
+  final public func makeCancelPayment(_ paymentId: Swift.Int64, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
+  final public func makeClearingPayment(_ paymentId: Swift.Int64, amount: Foundation.Decimal? = nil, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.ClearingStatus>) -> Swift.Void)
+  final public func makeRevokePayment(_ paymentId: Swift.Int64, amount: Foundation.Decimal? = nil, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
+  final public func confirmCardPayment(_ paymentId: Swift.Int64, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
+  final public func confirmDirectPayment(_ paymentId: Swift.Int64, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
+  final public func confirmApplePayment(paymentId: Swift.String, tokenData: Foundation.Data, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
+  final public func setConfiguration(_ config: FreedomPaymentSdk.SdkConfiguration)
+  final public func setPaymentView(_ paymentView: FreedomPaymentSdk.PaymentView)
+  final public func createApplePayment(paymentRequest: FreedomPaymentSdk.StandardPaymentRequest, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.ApplePayment>) -> Swift.Void)
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class PaymentView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @objc deinit
+  @_Concurrency.MainActor @preconcurrency public func onLoadingStateChanged(_ callback: @escaping (Swift.Bool) -> Swift.Void)
+}
+extension FreedomPaymentSdk.PaymentView {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func addSubview(_ view: UIKit.UIView)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func willRemoveSubview(_ subview: UIKit.UIView)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func insertSubview(_ view: UIKit.UIView, at index: Swift.Int)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func insertSubview(_ view: UIKit.UIView, aboveSubview siblingSubview: UIKit.UIView)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func insertSubview(_ view: UIKit.UIView, belowSubview siblingSubview: UIKit.UIView)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func exchangeSubview(at index1: Swift.Int, withSubviewAt index2: Swift.Int)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func bringSubviewToFront(_ view: UIKit.UIView)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func sendSubviewToBack(_ view: UIKit.UIView)
+  @_Concurrency.MainActor @objc override dynamic public func didMoveToWindow()
+}
+public struct TokenizedPaymentRequest {
+  public let amount: Foundation.Decimal
+  public let currency: FreedomPaymentSdk.Currency?
+  public let description: Swift.String
+  public let cardToken: Swift.String
+  public let userId: Swift.String
+  public let orderId: Swift.String
+  public let extraParams: [Swift.String : Swift.String]?
+  public init(amount: Foundation.Decimal, currency: FreedomPaymentSdk.Currency?, description: Swift.String, cardToken: Swift.String, userId: Swift.String, orderId: Swift.String, extraParams: [Swift.String : Swift.String]?)
+}
+public struct StandardPaymentRequest {
+  public let amount: Foundation.Decimal
+  public let currency: FreedomPaymentSdk.Currency?
+  public let description: Swift.String
+  public let userId: Swift.String?
+  public let orderId: Swift.String?
+  public let extraParams: [Swift.String : Swift.String]?
+  public init(amount: Foundation.Decimal, currency: FreedomPaymentSdk.Currency? = nil, description: Swift.String, userId: Swift.String? = nil, orderId: Swift.String? = nil, extraParams: [Swift.String : Swift.String]? = nil)
+}
+public enum Language : Swift.String {
+  case RU
+  case EN
+  case KZ
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct RemovedCard {
+  public let status: Swift.String?
+  public let merchantId: Swift.String?
+  public let cardHash: Swift.String?
+  public let deletedAt: Swift.String?
+}
+public enum ClearingStatus {
+  case success(amount: Foundation.Decimal)
+  case exceedsPaymentAmount
+  case failed
+}
+public struct ApplePayment {
+  public let paymentId: Swift.String
+  public init(paymentId: Swift.String)
+}
+public enum Region {
+  case kz
+  case uz
+  case kg
+  public static func == (a: FreedomPaymentSdk.Region, b: FreedomPaymentSdk.Region) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SdkConfiguration {
+  public init(userConfiguration: FreedomPaymentSdk.UserConfiguration = UserConfiguration(), operationalConfiguration: FreedomPaymentSdk.OperationalConfiguration = OperationalConfiguration())
+}
+extension FreedomPaymentSdk.HttpMethod : Swift.Equatable {}
+extension FreedomPaymentSdk.HttpMethod : Swift.Hashable {}
+extension FreedomPaymentSdk.HttpMethod : Swift.RawRepresentable {}
+extension FreedomPaymentSdk.Currency : Swift.Equatable {}
+extension FreedomPaymentSdk.Currency : Swift.Hashable {}
+extension FreedomPaymentSdk.Currency : Swift.RawRepresentable {}
+extension FreedomPaymentSdk.ConfirmPaymentStatus : Swift.Equatable {}
+extension FreedomPaymentSdk.ConfirmPaymentStatus : Swift.Hashable {}
+extension FreedomPaymentSdk.Connectivity : Swift.Equatable {}
+extension FreedomPaymentSdk.Connectivity : Swift.Hashable {}
+extension FreedomPaymentSdk.WebView : Swift.Equatable {}
+extension FreedomPaymentSdk.WebView : Swift.Hashable {}
+extension FreedomPaymentSdk.ValidationErrorType : Swift.Equatable {}
+extension FreedomPaymentSdk.ValidationErrorType : Swift.Hashable {}
+extension FreedomPaymentSdk.ValidationErrorType : Swift.RawRepresentable {}
+extension FreedomPaymentSdk.Language : Swift.Equatable {}
+extension FreedomPaymentSdk.Language : Swift.Hashable {}
+extension FreedomPaymentSdk.Language : Swift.RawRepresentable {}
+extension FreedomPaymentSdk.Region : Swift.Equatable {}
+extension FreedomPaymentSdk.Region : Swift.Hashable {}
