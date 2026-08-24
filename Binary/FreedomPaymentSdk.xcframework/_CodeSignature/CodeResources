@@ -6,19 +6,19 @@
 	<dict>
 		<key>ios-arm64/FreedomPaymentSdk.framework/FreedomPaymentSdk</key>
 		<data>
-		+4kyZD+4oB7cjF2Kces7cRbao+Y=
+		H0UNX7humnX0Exb/hI4NoS4Lew8=
 		</data>
 		<key>ios-arm64/FreedomPaymentSdk.framework/Info.plist</key>
 		<data>
-		CtHhfI+p9L3HcniuBCxVqMClURA=
+		9tg3InTa+F2a6c7LYuU+jbDWC+k=
 		</data>
 		<key>ios-arm64/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		KvEcmLCQHO5vTnPcgd21vBdNFZI=
+		w7SnlxjKMnp6ayPPZ2a3KEUdHfM=
 		</data>
 		<key>ios-arm64/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		nXnYWPDpMFOvogOUSQ6LH+Akmqc=
+		ttRLpuhgA6FXvSWWWadctGgmpm8=
 		</data>
 		<key>ios-arm64/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>ios-arm64/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		nXnYWPDpMFOvogOUSQ6LH+Akmqc=
+		ttRLpuhgA6FXvSWWWadctGgmpm8=
 		</data>
 		<key>ios-arm64/FreedomPaymentSdk.framework/_CodeSignature/CodeResources</key>
 		<data>
-		UJPDwxb4zTzL1s5bRx488wQ8l8s=
+		qZTD2d7qDXWJOU+JeWDOIKQht9Y=
 		</data>
 		<key>ios-arm64/FreedomPaymentSdk.framework/xcschememanagement.plist</key>
 		<data>
@@ -38,19 +38,19 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/FreedomPaymentSdk</key>
 		<data>
-		DUhcm2bCSwYpmEz2D2LH2iXAEos=
+		8eNDNMw8B4MH8dwGm15NY/RxiUI=
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Info.plist</key>
 		<data>
-		Nq7Y7B6Fi+PDTclHpfpqMvZD/fk=
+		pLg7AmP2OM9vETBhkCGV0fImlNU=
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		KvEcmLCQHO5vTnPcgd21vBdNFZI=
+		w7SnlxjKMnp6ayPPZ2a3KEUdHfM=
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		vifmWMc1A7+gBiPmkHj+gHVtNdo=
+		SjMm21383rzhbIFJPw8HuEZ4+Jw=
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -58,15 +58,15 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		vifmWMc1A7+gBiPmkHj+gHVtNdo=
+		SjMm21383rzhbIFJPw8HuEZ4+Jw=
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		KvEcmLCQHO5vTnPcgd21vBdNFZI=
+		w7SnlxjKMnp6ayPPZ2a3KEUdHfM=
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		DSnOwtkGfbBleFrFpWZvBQFjMQk=
+		ODheAOLktitjB6GDe94+IpP2uA4=
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -74,11 +74,11 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		DSnOwtkGfbBleFrFpWZvBQFjMQk=
+		ODheAOLktitjB6GDe94+IpP2uA4=
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/_CodeSignature/CodeResources</key>
 		<data>
-		OXnSOWrD6CxHUdrvN+C+trKYIHo=
+		D8jgrspY4QiWrwVC/CLlIktvkog=
 		</data>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/xcschememanagement.plist</key>
 		<data>
@@ -91,28 +91,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0ePiZoi679+SVdJtEsHBkcAKzPVD2TakcRnRiFAOEbs=
+			CK10CdadcUyvgChWjGNqXp5x1VW8BjnMahMjN/qy3TA=
 			</data>
 		</dict>
 		<key>ios-arm64/FreedomPaymentSdk.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xE5XR+VkljZFhsuP8LuCsokg5y/jGNhOnv1T5rIudEQ=
+			Bdv/q90m1QiWiKNoAoEzikzjXIRgOgL0Ge2+x7gPIBA=
 			</data>
 		</dict>
 		<key>ios-arm64/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ey4FYaPqdVS7nTJ4RdN/zGgYayjSbKXMsbKkXEnB7S4=
+			y468JMyBFeZEzWm0H6BqmCb4SucQ/5T2EIQ22JWQVSQ=
 			</data>
 		</dict>
 		<key>ios-arm64/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			64vK3aH26CONUA4FzlAqiQLhK9nkz4oZbHhxWI7Y1xk=
+			WhtCSwVszcsjNosgr6yqs/Ie4WJ5xO6pc1R4CifaEts=
 			</data>
 		</dict>
 		<key>ios-arm64/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -126,14 +126,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			64vK3aH26CONUA4FzlAqiQLhK9nkz4oZbHhxWI7Y1xk=
+			WhtCSwVszcsjNosgr6yqs/Ie4WJ5xO6pc1R4CifaEts=
 			</data>
 		</dict>
 		<key>ios-arm64/FreedomPaymentSdk.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			w+23gmBPa2PZUmU3VwGrsEBG+GrZyFTHm+teB/+v8AE=
+			hwEOWSX9eAC2MVTFPhaFsmegGC964KmkOYVOChZPLQI=
 			</data>
 		</dict>
 		<key>ios-arm64/FreedomPaymentSdk.framework/xcschememanagement.plist</key>
@@ -147,28 +147,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OQ7pwixG/4oSr1VGKw4PXaIR8T3GwrKuarl9yP4sqLw=
+			Tf9jauQ6jGfuQQT7hreRBcy23bI1ZDb7DoiEiDyJKrc=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SZP8sZiQcf+YYnAxLfIDv3CpRkP8dweuCqcYceJrhEg=
+			dSqOo+cfYAQNmyk+H5UDLgXXZI0aU2NCAmahky7IZMc=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ey4FYaPqdVS7nTJ4RdN/zGgYayjSbKXMsbKkXEnB7S4=
+			y468JMyBFeZEzWm0H6BqmCb4SucQ/5T2EIQ22JWQVSQ=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			F3VHIkdioHpaW9iUyEoIACQbFlRjBJwBC/8iGBBO0ao=
+			vXXWOZ8kp9ovnJ55iRfomIqf7EY+UnGu51CjmCsTfSE=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -182,21 +182,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			F3VHIkdioHpaW9iUyEoIACQbFlRjBJwBC/8iGBBO0ao=
+			vXXWOZ8kp9ovnJ55iRfomIqf7EY+UnGu51CjmCsTfSE=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ey4FYaPqdVS7nTJ4RdN/zGgYayjSbKXMsbKkXEnB7S4=
+			y468JMyBFeZEzWm0H6BqmCb4SucQ/5T2EIQ22JWQVSQ=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5wjOhIthD5cYijU+BiEvz+LgjNvyroVVNgz9UrMtDT8=
+			AWizBRh8eLG23LiRVFcGm94Bxd92vg8F3jKEtaZtkk0=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/Modules/FreedomPaymentSdk.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -210,14 +210,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5wjOhIthD5cYijU+BiEvz+LgjNvyroVVNgz9UrMtDT8=
+			AWizBRh8eLG23LiRVFcGm94Bxd92vg8F3jKEtaZtkk0=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1yt6ZPUUn9LU/37fEjoF7RE7+czHfrcjRQfwNDMCSjQ=
+			rjXamwxaVn9NoFKrs+6mRbtEVxnwJyjSLKPT/2a5qOM=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/FreedomPaymentSdk.framework/xcschememanagement.plist</key>

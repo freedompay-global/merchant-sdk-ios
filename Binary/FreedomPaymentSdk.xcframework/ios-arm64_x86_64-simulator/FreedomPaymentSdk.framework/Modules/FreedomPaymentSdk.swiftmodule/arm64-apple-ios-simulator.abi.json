@@ -4837,6 +4837,66 @@
           },
           {
             "kind": "Var",
+            "name": "authorizationCode",
+            "printedName": "authorizationCode",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17FreedomPaymentSdk6StatusV17authorizationCodeSSSgvp",
+            "mangledName": "$s17FreedomPaymentSdk6StatusV17authorizationCodeSSSgvp",
+            "moduleName": "FreedomPaymentSdk",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17FreedomPaymentSdk6StatusV17authorizationCodeSSSgvg",
+                "mangledName": "$s17FreedomPaymentSdk6StatusV17authorizationCodeSSSgvg",
+                "moduleName": "FreedomPaymentSdk",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "authCode",
             "printedName": "authCode",
             "children": [
@@ -4859,12 +4919,11 @@
             "usr": "s:17FreedomPaymentSdk6StatusV8authCodeSiSgvp",
             "mangledName": "$s17FreedomPaymentSdk6StatusV8authCodeSiSgvp",
             "moduleName": "FreedomPaymentSdk",
+            "deprecated": true,
             "declAttributes": [
-              "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "Available"
             ],
-            "isLet": true,
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -4890,7 +4949,6 @@
                 "usr": "s:17FreedomPaymentSdk6StatusV8authCodeSiSgvg",
                 "mangledName": "$s17FreedomPaymentSdk6StatusV8authCodeSiSgvg",
                 "moduleName": "FreedomPaymentSdk",
-                "implicit": true,
                 "accessorKind": "get"
               }
             ]
@@ -11922,238 +11980,238 @@
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 926,
+      "offset": 929,
       "length": 11,
       "value": "\"pg_status\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 965,
+      "offset": 968,
       "length": 15,
       "value": "\"pg_payment_id\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1006,
+      "offset": 1009,
       "length": 13,
       "value": "\"pg_order_id\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1046,
+      "offset": 1049,
       "length": 13,
       "value": "\"pg_currency\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1084,
+      "offset": 1087,
       "length": 11,
       "value": "\"pg_amount\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1123,
+      "offset": 1126,
       "length": 15,
       "value": "\"pg_can_reject\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1167,
+      "offset": 1170,
       "length": 16,
       "value": "\"pg_create_date\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1215,
+      "offset": 1218,
       "length": 19,
       "value": "\"pg_payment_method\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1266,
+      "offset": 1269,
       "length": 19,
       "value": "\"pg_payment_status\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1318,
+      "offset": 1321,
       "length": 20,
       "value": "\"pg_clearing_amount\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1370,
+      "offset": 1373,
       "length": 19,
       "value": "\"pg_revoked_amount\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1420,
+      "offset": 1423,
       "length": 18,
       "value": "\"pg_refund_amount\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1465,
+      "offset": 1468,
       "length": 14,
       "value": "\"pg_card_name\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1505,
+      "offset": 1508,
       "length": 13,
       "value": "\"pg_card_pan\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1552,
+      "offset": 1555,
       "length": 21,
       "value": "\"pg_revoked_payments\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1606,
+      "offset": 1609,
       "length": 20,
       "value": "\"pg_refund_payments\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1654,
+      "offset": 1657,
       "length": 14,
       "value": "\"pg_reference\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1695,
+      "offset": 1698,
       "length": 13,
       "value": "\"pg_captured\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1735,
+      "offset": 1738,
       "length": 14,
       "value": "\"pg_auth_code\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1779,
+      "offset": 1782,
       "length": 17,
       "value": "\"pg_failure_code\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1833,
+      "offset": 1836,
       "length": 24,
       "value": "\"pg_failure_description\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 1895,
+      "offset": 1898,
       "length": 26,
       "value": "\"pg_last_transaction_info\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 2091,
+      "offset": 2094,
       "length": 20,
       "value": "\"pg_revoked_payment\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 2287,
+      "offset": 2290,
       "length": 22,
       "value": "\"pg_revoke_payment_id\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 2341,
+      "offset": 2344,
       "length": 11,
       "value": "\"pg_status\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 2518,
+      "offset": 2521,
       "length": 19,
       "value": "\"pg_refund_payment\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 2800,
+      "offset": 2803,
       "length": 15,
       "value": "\"pg_payment_id\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 2847,
+      "offset": 2850,
       "length": 19,
       "value": "\"pg_payment_status\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 2891,
+      "offset": 2894,
       "length": 11,
       "value": "\"pg_amount\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 2932,
+      "offset": 2935,
       "length": 17,
       "value": "\"pg_payment_date\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 2977,
+      "offset": 2980,
       "length": 14,
       "value": "\"pg_reference\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 3196,
+      "offset": 3199,
       "length": 8,
       "value": "\"status\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 3232,
+      "offset": 3235,
       "length": 14,
       "value": "\"failure_code\""
     },
     {
       "filePath": "\/Users\/nikolaikaliuzhnyi\/XCode\/ios-merchant-sdk\/FreedomPaymentSdk\/Internal\/Data\/repo\/Dto\/StatusDto.swift",
       "kind": "StringLiteral",
-      "offset": 3281,
+      "offset": 3284,
       "length": 21,
       "value": "\"failure_description\""
     },

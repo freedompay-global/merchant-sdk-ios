@@ -131,7 +131,11 @@ public struct Status : Swift.Decodable {
   public let reference: Swift.Int64?
   public let captured: Swift.Bool?
   public let createDate: Swift.String
-  public let authCode: Swift.Int?
+  public let authorizationCode: Swift.String?
+  @available(*, deprecated, message: "Use authorizationCode instead.")
+  public var authCode: Swift.Int? {
+    get
+  }
   public let failureCode: Swift.String?
   public let failureDescription: Swift.String?
   public let lastTransactionInfo: FreedomPaymentSdk.LastTransactionInfo?
