@@ -204,6 +204,8 @@ extension FreedomPaymentSdk.PaymentView {
   final public func setConfiguration(_ config: FreedomPaymentSdk.SdkConfiguration)
   final public func setPaymentView(_ paymentView: FreedomPaymentSdk.PaymentView)
   final public func createApplePayment(paymentRequest: FreedomPaymentSdk.StandardPaymentRequest, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.ApplePayment>) -> Swift.Void)
+  final public func payWithApplePay(paymentRequest: FreedomPaymentSdk.StandardPaymentRequest, tokenData: Foundation.Data, force3ds: Swift.Bool = false, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
+  final public func cancelAllRequests()
   @objc deinit
 }
 public struct SdkConfiguration {
