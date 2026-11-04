@@ -3,6 +3,8 @@
 
 &emsp;The Payment SDK is a library that simplifies interaction with the Freedom Pay API. Supports iOS 15 and above.
 
+&emsp;Updating to a newer version of the SDK? See our [migration guide](MIGRATION_GUIDE.md).
+
 ---
 # Table of Contents
 :::note[]
@@ -32,13 +34,13 @@
   - [2. Create a Payment Processing Certificate](#2-create-a-payment-processing-certificate)
   - [3. Enable Apple Pay in Your App ID](#3-enable-apple-pay-in-your-app-id)
   - [4. Xcode setup](#4-xcode-setup)
-  - [5. Creating an Apple Pay Transaction](#5-creating-an-apple-pay-transaction)
-  - [6. Confirming an Apple Pay Transaction](#6-confirming-an-apple-pay-transaction)
+  - [5. Paying with Apple Pay](#5-paying-with-apple-pay)
 - [Error Handling and Results](#error-handling-and-results)
   - [`FreedomResult.success<T>`](#freedomresultsuccesst)
   - [`FreedomResult.error`](#freedomresulterror)
 - [Data Structures](#data-structures)
 - [Support](#support)
+  :::
 ---
 
 # Getting Started
@@ -66,7 +68,7 @@ Add the following dependency to your `Package.swift` file:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/freedompay-global/merchant-sdk-ios.git", from: "1.0.3")
+    .package(url: "https://github.com/freedompay-global/merchant-sdk-ios.git", from: "1.1.0")
 ]
 ```
 
@@ -658,86 +660,68 @@ extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
         didAuthorizePayment payment: PKPayment,
         handler completion: @escaping (PKPaymentAuthorizationResult) -> Void
     ) {
-        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+        // After receiving the token, make the payment by calling payWithApplePay.
+        // Handle the payment result and call the PassKit completion handler.
     }
-    
+
     // Called when Apple Pay sheet is dismissed
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
 }
 ```
-## 5. Creating an Apple Pay Transaction
-&emsp;The `createApplePayment` method is the first step in processing a payment via Apple Pay using the SDK. This method initiates a Apple Pay payment.
+## 5. Paying with Apple Pay
+&emsp;The `payWithApplePay` method is the final step in processing an Apple Pay payment with the SDK. After you have obtained the Apple Pay token (see [Xcode setup](#4-xcode-setup)), pass it to this method together with the payment details.
+
+:::warning[]
+This method requires that a `PaymentView` has been set using [`freedomApi.setPaymentView()`](#integrating-the-paymentview-optional) prior to calling it. If the bank requires 3-D Secure, the SDK shows the bank's page in the `PaymentView`; without it, the payment fails with `.paymentViewIsNotInitialized`.
+:::
 
 &emsp;This method takes these parameters:
 
-| Parameter        | Type                                     | Description                                                                                                                                     |
-|------------------|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| `paymentRequest` | `StandardPaymentRequest`                 | Essential details required to initiate a new payment. See [`StandardPaymentRequest`](#standardpaymentrequest-structure) model.                  |
-| `onResult`       | `@escaping (FreedomResult<ApplePayment>) -> Void` | Callback function that will be invoked with the result of the Apple payment initiation. See [`ApplePayment`](#applepayment-structure) model. |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `paymentRequest` | `StandardPaymentRequest` | Essential details required to make a payment. `amount` and `currency` must match the ones in your Apple Pay request. See [`StandardPaymentRequest`](#standardpaymentrequest-structure) model. |
+| `tokenData` | `Data` | Encrypted payment token received from PassKit (`payment.token.paymentData`). This token contains the sensitive card data securely. |
+| `force3ds` | `Bool` | Optional. Defaults to `false`. Set to `true` to require 3-D Secure for this payment. |
+| `onResult` | `(FreedomResult<PaymentResponse>) -> Void` | Callback function that will be invoked with the final result of the Apple Pay payment. See [`PaymentResponse`](#paymentresponse-structure) model. |
 
-&emsp;The process returns an [`FreedomResult<ApplePayment>`](#error-handling-and-results) object, which can be either:
-- **Success**: Contains a `ApplePayment` object.
+&emsp;The process returns a [`FreedomResult<PaymentResponse>`](#error-handling-and-results) object, which can be either:
+- **Success**: Contains a `PaymentResponse` object. Check its `status`:
+  - `.success`: the payment is completed.
+  - `.error`: the payment was declined (for example, 3-D Secure failed). The `code` and `description` explain why.
+  - Any other status: the payment is not final, for example because the user closed the 3-D Secure page before the bank responded. Check the final status later with [`getPaymentStatus`](#get-payment-status).
 - **Error**: Specifies the type of error that occurred.
 
-```Swift
-func createApplePayment() {
-    let standardPaymentRequest = StandardPaymentRequest(
-        amount: Decimal(10.0),
-        currency: .KZT,
-        description: "some description",
-        userId: "123",
-        orderId: "456",
-        extraParams: nil)
-    freedomApi.createApplePayment(
-        paymentRequest: standardPaymentRequest
-    ) { result in
-        switch result {
-        case .success(let applePayment):
-            self.paymentId = applePayment.paymentId
-        case .error(let error):
-            print("Apple Payment failed: \(error)")
-        }
+```swift
+let standardPaymentRequest = StandardPaymentRequest(
+    amount: Decimal(10.0),
+    currency: .KZT,
+    description: "some description",
+    userId: "123",
+    orderId: "456",
+    extraParams: nil)
+
+freedomApi.payWithApplePay(
+    paymentRequest: standardPaymentRequest,
+    tokenData: payment.token.paymentData
+) { result: FreedomResult<PaymentResponse> in
+    switch result {
+    case .success(let paymentResponse):
+        // Apple Pay payment processed. Check paymentResponse.status.
+        print("Payment ID: \(paymentResponse.paymentId)")
+    case .error(let error):
+        // Failed to process Apple Pay payment with SDK.
+        print("Apple Payment failed: \(error)")
     }
 }
 ```
-## 6. Confirming an Apple Pay Transaction
-&emsp;The `confirmApplePayment` method is the final step in processing a Apple Pay transaction with the SDK. After you have successfully obtained the Apple Pay token from the **PassKit** (e.g., from `PKPayment` from `PKPaymentAuthorizationController`), you pass this token along with the `paymentId` received from [`createApplePayment`](#5-creating-an-apple-pay-transaction) to this method to finalize the transaction.
 
-&emsp;This method takes these parameters:
+:::note[]
+- 3-D Secure: the SDK shows the `PaymentView` with the bank's page and hides it once the payment gets a final status. There is no time limit for the user to complete it.
+- The user can cancel 3-D Secure with the view's left-edge swipe. The SDK then returns the latest known payment status.
+  :::
 
-| Parameter  | Type                                       | Description                                                                                                                                                           |
-|------------|--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `paymentId`  | `String`                            | Payment previously obtained from a successful call to [`createApplePayment`](#5-creating-an-apple-pay-transaction). See [`ApplePayment`](#applepayment-structure) model. |
-| `tokenData`    | `Data`                                   | Encrypted payment token received from the **PassKit**. This token contains the sensitive card data securely.                                                       |
-| `onResult` | `@escaping (FreedomResult<PaymentResponse>) -> Void` | Callback function that will be invoked with the final result of the Apple Pay transaction confirmation. See [`PaymentResponse`](#paymentresponse-structure) model.   |
-
-&emsp;The process returns an [`FreedomResult<PaymentResponse>`](#error-handling-and-results) object, which can be either:
-- **.success**: Contains a `PaymentResponse` object.
-- **.error**: Specifies the type of error that occurred.
-
-```Swift
-func paymentAuthorizationController(
-    _ controller: PKPaymentAuthorizationController,
-    didAuthorizePayment payment: PKPayment,
-    handler completion: @escaping (PKPaymentAuthorizationResult) -> Void
-) {
-    freedomApi.confirmApplePayment(
-        paymentId: paymentId,
-        tokenData: payment.token.paymentData
-    ) { result in
-        switch result {
-        case .success(let paymentResponse):
-            print("Payment ID: \(paymentResponse.paymentId)")
-            completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-        case .error(let error):
-            print("Apple Payment Confirmation failed: \(error)")
-            completion(PKPaymentAuthorizationResult(status: .failure, errors: [error]))
-        }
-    }
-}
-```
 ---
 # Error Handling and Results
 &emsp;All asynchronous operations in the SDK return their outcome encapsulated within a `FreedomResult` sealed interface.
@@ -747,7 +731,7 @@ func paymentAuthorizationController(
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/freedompay-global/merchant-sdk-android/refs/heads/main/documentation-assets/FreedomResult(Dark).png"">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/freedompay-global/merchant-sdk-android/refs/heads/main/documentation-assets/FreedomResult(Light).png"">
-  <img alt="Mind Map of Freedom Result" src="https://raw.githubusercontent.com/freedompay-global/merchant-sdk-android/refs/heads/main/documentation-assets/FreedomResult(Light).png" width="100%">
+  <img alt="Mind Map of Freedom Result" src="https://raw.githubusercontent.com/freedompay-global/merchant-sdk-android/refs/heads/main/documentation-assets/FreedomResult(Light).png" width="50%">
 </picture>
 
 
@@ -966,7 +950,7 @@ case .unknown(_):
 | `INVALID_CARD_TOKEN`     | Provided card token does not meet the specified length constraints.        |
 
 ## `ApplePayment` Structure
-&emsp;The response received after initiating a Apple Pay transaction.
+&emsp;The response received from the legacy `createApplePayment` method. The single-call `payWithApplePay` flow returns `PaymentResponse` directly and does not use this model. See the [Migration Guide](MIGRATION_GUIDE.md).
 
 | Property    | Type     | Description                                                 |
 |-------------|----------|-------------------------------------------------------------|
