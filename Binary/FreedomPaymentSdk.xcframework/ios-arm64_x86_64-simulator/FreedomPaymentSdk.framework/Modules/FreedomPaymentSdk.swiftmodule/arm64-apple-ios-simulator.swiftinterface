@@ -56,10 +56,6 @@ public struct UserConfiguration {
   public let userEmail: Swift.String?
   public init(userPhone: Swift.String? = nil, userContactEmail: Swift.String? = nil, userEmail: Swift.String? = nil)
 }
-public struct ApplePayment {
-  public let paymentId: Swift.String
-  public init(paymentId: Swift.String)
-}
 public struct Card {
   public let status: Swift.String?
   public let merchantId: Swift.String?
@@ -200,10 +196,8 @@ extension FreedomPaymentSdk.PaymentView {
   final public func makeRevokePayment(_ paymentId: Swift.Int64, amount: Foundation.Decimal? = nil, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
   final public func confirmCardPayment(_ paymentId: Swift.Int64, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
   final public func confirmDirectPayment(_ paymentId: Swift.Int64, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
-  final public func confirmApplePayment(paymentId: Swift.String, tokenData: Foundation.Data, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
   final public func setConfiguration(_ config: FreedomPaymentSdk.SdkConfiguration)
   final public func setPaymentView(_ paymentView: FreedomPaymentSdk.PaymentView)
-  final public func createApplePayment(paymentRequest: FreedomPaymentSdk.StandardPaymentRequest, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.ApplePayment>) -> Swift.Void)
   final public func payWithApplePay(paymentRequest: FreedomPaymentSdk.StandardPaymentRequest, tokenData: Foundation.Data, force3ds: Swift.Bool = false, onResult: @escaping (FreedomPaymentSdk.FreedomResult<FreedomPaymentSdk.PaymentResponse>) -> Swift.Void)
   final public func cancelAllRequests()
   @objc deinit

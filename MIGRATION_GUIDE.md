@@ -1,9 +1,9 @@
 # Migration Guide
 
-## Migrating from versions < 1.1.0
+## Migrating from versions < 1.2.0
 
 ### Apple Pay
-- Use `FreedomAPI.payWithApplePay()` instead of `FreedomAPI.createApplePayment()` and `FreedomAPI.confirmApplePayment()`.
+- `FreedomAPI.createApplePayment()` and `FreedomAPI.confirmApplePayment()` have been removed. Use `FreedomAPI.payWithApplePay()` instead.
   - Apple Pay payments now take a single SDK call. You no longer create a payment before showing the Apple Pay sheet. Launch Apple Pay directly, then pass the received token to `payWithApplePay()`.
   - `payWithApplePay()` takes the same `StandardPaymentRequest` you previously passed to `createApplePayment()`, together with the Apple Pay token.
   - The result type is unchanged: `FreedomResult<PaymentResponse>`.
@@ -39,7 +39,7 @@
       tokenData: payment.token.paymentData
   ) { result: FreedomResult<PaymentResponse> in /* handle result */ }
   ```
-- `ApplePayment` is no longer needed in this flow. It was only used to pass the payment from `createApplePayment()` to `confirmApplePayment()`. The legacy methods and model are still available in the current iOS SDK.
+- `ApplePayment` has been removed. It was only used to pass the payment from `createApplePayment()` to `confirmApplePayment()` and is no longer needed.
 - `payWithApplePay()` requires a `PaymentView`. Call `freedomApi.setPaymentView()` before paying. If the bank requires 3-D Secure, the SDK shows the bank's page in the `PaymentView` and hides it once the payment gets a final status. Without a `PaymentView`, the call returns `.infrastructureError(.webView(.paymentViewIsNotInitialized))`.
   ```swift
   // after

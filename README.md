@@ -949,12 +949,6 @@ case .unknown(_):
 | `INVALID_USER_ID`        | Provided user ID does not meet the specified format or length constraints. |
 | `INVALID_CARD_TOKEN`     | Provided card token does not meet the specified length constraints.        |
 
-## `ApplePayment` Structure
-&emsp;The response received from the legacy `createApplePayment` method. The single-call `payWithApplePay` flow returns `PaymentResponse` directly and does not use this model. See the [Migration Guide](MIGRATION_GUIDE.md).
-
-| Property    | Type     | Description                                                 |
-|-------------|----------|-------------------------------------------------------------|
-| `paymentId` | `String` | Unique identifier for the initiated Apple Pay transaction. |
 
 ## `Currency` Structure
 &emsp;The `Currency` enum defines all supported currency codes that can be used when specifying payment amounts.
